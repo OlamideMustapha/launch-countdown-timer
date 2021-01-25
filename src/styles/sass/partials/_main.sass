@@ -25,12 +25,16 @@ body
     width: 100vw
     height: $main_h
     padding-top: 130px
+
     &__header
+      padding-top: 0px
       h1
-        font-size: 20px
+        font-size: 18px
+        @include breakpoint-up(medium)
+          font-size: 20px
         color: $white
         text-transform: uppercase
-        letter-spacing: .4em
+        letter-spacing: .3em
         text-align: center
 
 
@@ -41,3 +45,8 @@ body
     background-size: 100%
     width: 100vw
     height: $footer_h
+
+
+.container
+  padding: 25px
+  margin: auto

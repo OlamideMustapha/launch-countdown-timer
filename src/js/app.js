@@ -54,12 +54,16 @@ class FlipComponent {
 
     this._flipCardName = createHTMLElement ("div", {className:"flip__name"},label);
 
+    const div = createHTMLElement (
+                "div"
+              , {className: "flip__wrapper"}
+              , createHTMLElement ("div", {className: "left flip__dot"})
+              , createHTMLElement ("div", {className: "right flip__dot"})
+              , this._flipCard )
     this._flipComponent = createHTMLElement (
                           "div"
                         , {className: "flip flip-animate", id: `${label}`}
-                        , createHTMLElement ("div", {className: "left flip__dot"})
-                        , createHTMLElement ("div", {className: "right flip__dot"})
-                        , this._flipCard
+                        , div
                         , this._flipCardName);
     this._value = 0;
   }
@@ -96,8 +100,19 @@ class FlipComponent {
 
 const countdown = document.querySelector (".main__countdown");
 
-const dailyFlipCard = new FlipComponent ("Day");
+const dailyFlipCard  = new FlipComponent ("Days");
+const hourlyFlipCard = new FlipComponent ("Hours");
+const minFlipCard    = new FlipComponent ("Minutes");
+const secFlipCard    = new FlipComponent ("Seconds");
 
 countdown.append (dailyFlipCard.create);
+countdown.append (hourlyFlipCard.create);
+countdown.append (minFlipCard.create);
+countdown.append (secFlipCard.create);
+
+dailyFlipCard.update  = 22;
+hourlyFlipCard.update = 22;
+minFlipCard.update    = 22;
+secFlipCard.update    = 22;
 
 

@@ -1,25 +1,33 @@
-$dot_w: 10px
-$dot_bg: #1a1a24
-$dot_posY : 40%
-$dot_posX: -3px
 
 // font-size
-$flip_small: 2vw
-$flip_large: 9vw
+$flip_small: 8px
+$flip_large: 10vw
 
 // color
-$color_light: #fa5e84
+$color_light: $softRed// #fa5e84
 $color_dark: #b94561
 
 // card background
-$card_bg_light:#34364f
-$card_bg_dark: #22223a
+$card_bg_light: $darkDesaturatedBlue //#34364f
+$card_bg_dark: $darkDesaturatedBlue // #22223a
+
+$card_h: 0.78125em // 50px
+$card_w: 1.796875em // 115px
+
+
+$dot_w: 0.75rem // 12px
+$dot_bg: #1a1a24
+$dot_posY: 50%
+$dot_posX: -4px
 
 
 .main__countdown
   text-align: center
   perspective: 400px
-  margin: 20px auto
+  margin: auto
+  width: 100%
+  height: 100%
+  @include flex-row (center, flex-start)
 
   & *,
   & *:before,
@@ -27,17 +35,22 @@ $card_bg_dark: #22223a
     box-sizing: border-box
 
 .flip
-  position: relative
   @include flex-column (space-between, center)
-  overflow: hidden
+  &:not(:last-child)
+    margin: 0px 20px 0px 0px
+
+  > div
+    position: relative
+    overflow: hidden
+    height: 33px * 2.5
 
   &__dot
     position: absolute
     width: $dot_w
     height: $dot_w
     background-color: $dot_bg
-    border-radius: 50px
-    z-index:5
+    border-radius: 0.78125em
+    z-index: 5
     top: $dot_posY
 
     &.right
@@ -48,13 +61,17 @@ $card_bg_dark: #22223a
   &__card
     display: block
     position: relative
-    padding-bottom: 0.72em
+    padding-bottom: $card_h
     font-size: $flip_large
     line-height: 0.95
 
-
   &__name
     font-size: $flip_small
+    font-weight: 600
+    letter-spacing: .3em
+    text-transform: uppercase
+    padding-top: 10px
+    color: $grayishBlue
 
 .card
   &__top,
@@ -62,32 +79,48 @@ $card_bg_dark: #22223a
   &__back::before,
   &__back::after
     display: block
-    height: 0.72em
-    color: $color_dark
+    height: 30px
+    font-size: 32px
+    color: $color_light
+    filter: brightness(79%)
     background-color: $card_bg_dark
-    padding: 0.25em 0.25em
-    border-radius: 8px 8px 0 0
+    padding: 0
+    line-height: 1.6em
+    border-radius: 4px 4px 0 0
     backface-visibility: hidden
     transform-style: preserve-3d
-    width: 1.7em
+
+    width: 58px
+    @include breakpoint-up(small)
+      width: 65px
+    @include breakpoint-up(medium)
+      width: 58px
+    @include breakpoint-up(large)
+      width: 58px
+    
     transform: translateZ(0)
 
   &__top
+    height: 40px
+
 
   &__bottom
     position: absolute
     color: $color_light
-    top: 50%
+    // padding: 24px 0px
+    // line-height: 0px
+    top: 55%
     left: 0
+    filter: brightness(100%)
     background: $card_bg_light
-    border-radius: 0 0 8px 8px
-    box-shadow: 0px 9px 2px 0px #1a1a24
+    border-radius: 0 0 4px 4px
+    // box-shadow: 0rem 0.7rem #1a1a24
     pointer-events: none
     overflow: hidden
 
     &::after
       display: block
-      margin-top: -0.72em
+      margin-top: - $card_h
       content: attr(data-value)
 
 

@@ -27,12 +27,20 @@ body .main {
   height: 80%;
   padding-top: 130px;
 }
+body .main__header {
+  padding-top: 0px;
+}
 body .main__header h1 {
-  font-size: 20px;
+  font-size: 18px;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.3em;
   text-align: center;
+}
+@media (min-width: 640px) {
+  body .main__header h1 {
+    font-size: 20px;
+  }
 }
 body .footer {
   background-image: url("../../../images/pattern-hills.svg");
@@ -42,75 +50,118 @@ body .footer {
   height: 20%;
 }
 
+.container {
+  padding: 25px;
+  margin: auto;
+}
+
 .main__countdown {
   text-align: center;
   perspective: 400px;
-  margin: 20px auto;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 .main__countdown *, .main__countdown *:before, .main__countdown *:after {
   box-sizing: border-box;
 }
 
 .flip {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+.flip:not(:last-child) {
+  margin: 0px 20px 0px 0px;
+}
+.flip > div {
+  position: relative;
   overflow: hidden;
+  height: 82.5px;
 }
 .flip__dot {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 0.75rem;
+  height: 0.75rem;
   background-color: #1a1a24;
-  border-radius: 50px;
+  border-radius: 0.78125em;
   z-index: 5;
-  top: 40%;
+  top: 50%;
 }
 .flip__dot.right {
-  right: -3px;
+  right: -4px;
 }
 .flip__dot.left {
-  left: -3px;
+  left: -4px;
 }
 .flip__card {
   display: block;
   position: relative;
-  padding-bottom: 0.72em;
-  font-size: 9vw;
+  padding-bottom: 0.78125em;
+  font-size: 10vw;
   line-height: 0.95;
 }
 .flip__name {
-  font-size: 2vw;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding-top: 10px;
+  color: #8486a9;
 }
 
 .card__top, .card__bottom, .card__back::before, .card__back::after {
   display: block;
-  height: 0.72em;
-  color: #b94561;
-  background-color: #22223a;
-  padding: 0.25em 0.25em;
-  border-radius: 8px 8px 0 0;
+  height: 30px;
+  font-size: 32px;
+  color: #fb6087;
+  filter: brightness(79%);
+  background-color: #343650;
+  padding: 0;
+  line-height: 1.6em;
+  border-radius: 4px 4px 0 0;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  width: 1.7em;
+  width: 58px;
   transform: translateZ(0);
+}
+@media (min-width: 375px) {
+  .card__top, .card__bottom, .card__back::before, .card__back::after {
+    width: 65px;
+  }
+}
+@media (min-width: 640px) {
+  .card__top, .card__bottom, .card__back::before, .card__back::after {
+    width: 58px;
+  }
+}
+@media (min-width: 1020px) {
+  .card__top, .card__bottom, .card__back::before, .card__back::after {
+    width: 58px;
+  }
+}
+.card__top {
+  height: 40px;
 }
 .card__bottom {
   position: absolute;
-  color: #fa5e84;
-  top: 50%;
+  color: #fb6087;
+  top: 55%;
   left: 0;
-  background: #34364f;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0px 9px 2px 0px #1a1a24;
+  filter: brightness(100%);
+  background: #343650;
+  border-radius: 0 0 4px 4px;
   pointer-events: none;
   overflow: hidden;
 }
 .card__bottom::after {
   display: block;
-  margin-top: -0.72em;
+  margin-top: -0.78125em;
   content: attr(data-value);
 }
 .card__back {

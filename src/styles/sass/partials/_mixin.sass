@@ -4,13 +4,13 @@ $breakpoints-up: ("small": "375px", "medium": "640px", "large": "1020px", "xlarg
 $breakpoints-down: ("xsmall": "375px", "small": "640px", "medium": "1020px", "large": "1440px")
 
 
-@mixin breakpoint-up ($size)
+@mixin breakpoint-up($size)
   @media (min-width: map-get($breakpoints-up, $size))
-    @contain
+    @content
 
-@mixin breakpoint-down ($size)
+@mixin breakpoint-down($size)
   @media (max-width: map-get($breakpoints-down, $size))
-    @contain
+    @content
 
 @mixin flex-row ($js, $ai)
   display: flex
