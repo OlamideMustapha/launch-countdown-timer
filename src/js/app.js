@@ -65,7 +65,7 @@ class FlipComponent {
                         , {className: "flip flip-animate", id: `${label}`}
                         , div
                         , this._flipCardName);
-    this._value = 0;
+    this._value = undefined;
   }
 
   get create () {
@@ -110,9 +110,59 @@ countdown.append (hourlyFlipCard.create);
 countdown.append (minFlipCard.create);
 countdown.append (secFlipCard.create);
 
-dailyFlipCard.update  = 22;
-hourlyFlipCard.update = 22;
-minFlipCard.update    = 22;
-secFlipCard.update    = 22;
 
 
+const getSecondsFromIncrementalTime = (incrementalTime) =>
+  incrementalTime % 60;
+
+const getMinutesFromIncrementalTime = (incrementalTime) =>
+  Math.floor ((incrementalTime / 60) % 60);
+
+
+const getHoursFromIncrementalTime = (incrementalTime) => 
+  Math.floor ((incrementalTime / 3600) % 24);
+
+const getDaysFromIncrementalTime = (incrementalTime) =>  
+  Math.floor (incrementalTime / 86400);
+
+/**
+ * updateCountDownDisplay takes an incrementalTime as argument
+ * and converts it to number of days, hours, minutes and secondes
+ * also updating the filp card component of each of the respective fields
+ * @param {Number} incrementalTime 
+ */
+function updateCountDownDisplay (incrementalTime) {
+  dailyFlipCard.update  = getDaysFromIncrementalTime (incrementalTime);
+  hourlyFlipCard.update = getHoursFromIncrementalTime (incrementalTime);
+  minFlipCard.update    = getMinutesFromIncrementalTime (incrementalTime);
+  secFlipCard.update    = getSecondsFromIncrementalTime (incrementalTime);
+}
+
+// count variable is increment very 1 second
+// this value is then converted into sec/min/hours/days
+let incrementalTime = (86400 * 8);
+
+/**
+ * counter_1 and counter_2 functions both call each other
+ * leading to a recursive process.
+ * This approach of having two setTimout method is used to ensure
+ * that the incrementalTime is decreated exactly after 1 second as opposed
+ * to using setInterval method which perform the opperation
+ * any given moment after 1 second
+*/
+const counter_1 = () => {
+  setTimeout (() => {
+    counter_2 ();
+  }, 1000);
+}
+
+const counter_2 = () => {
+  setTimeout (() => {
+    counter_1 ();
+    updateCountDownDisplay (incrementalTime);
+  }, 0);
+  return incrementalTime--;
+}
+
+// init
+counter_1 ()
