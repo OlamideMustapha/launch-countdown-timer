@@ -1,8 +1,17 @@
 
 // font-size
 $flip_small: 8px
-$flip_large: 10vw
 
+@mixin flip-size()
+  font-size: 10vw
+  @include breakpoint-up (medium)
+    font-size: 8vw
+  @include breakpoint-up (large)
+    font-size: 6vw
+  @include breakpoint-up (xlarge)
+    font-size: 4.3vw
+  
+  
 // color
 $color_light: $softRed// #fa5e84
 $color_dark: #b94561
@@ -11,13 +20,10 @@ $color_dark: #b94561
 $card_bg_light: $darkDesaturatedBlue //#34364f
 $card_bg_dark: $darkDesaturatedBlue // #22223a
 
-$card_h: 0.78125em // 50px
-$card_w: 1.796875em // 115px
 
 
-$dot_w: 0.75rem // 12px
 $dot_bg: #1a1a24
-$dot_posY: 50%
+$dot_posY: 45%
 $dot_posX: -4px
 
 
@@ -38,16 +44,24 @@ $dot_posX: -4px
   @include flex-column (space-between, center)
   &:not(:last-child)
     margin: 0px 20px 0px 0px
+  @include flip-size
+  
 
   > div
     position: relative
+    display: inline-block
     overflow: hidden
-    height: 33px * 2.5
 
   &__dot
     position: absolute
-    width: $dot_w
-    height: $dot_w
+    width: 7px
+    height: 7px
+    @include breakpoint-up (large)
+      width: 10px
+      height: 10px
+    @include breakpoint-up (xlarge)
+      width: 12px
+      height: 12px
     background-color: $dot_bg
     border-radius: 0.78125em
     z-index: 5
@@ -61,12 +75,17 @@ $dot_posX: -4px
   &__card
     display: block
     position: relative
-    padding-bottom: $card_h
-    font-size: $flip_large
+    padding-bottom: 0.72em
+    @include flip-size
     line-height: 0.95
 
   &__name
-    font-size: $flip_small
+    font-size: .8vw
+    @include breakpoint-down (small)
+      font-size: 8px
+    @include breakpoint-up (xlarge)
+      font-size: .6vw
+      
     font-weight: 600
     letter-spacing: .3em
     text-transform: uppercase
@@ -79,37 +98,21 @@ $dot_posX: -4px
   &__back::before,
   &__back::after
     display: block
-    height: 30px
-    font-size: 32px
+    height: 0.72em
     color: $color_light
     filter: brightness(79%)
     background-color: $card_bg_dark
-    padding: 0
-    line-height: 1.6em
+    padding: 0.25em 0.25em
     border-radius: 4px 4px 0 0
     backface-visibility: hidden
     transform-style: preserve-3d
-
-    width: 58px
-    @include breakpoint-up(small)
-      width: 65px
-    @include breakpoint-up(medium)
-      width: 58px
-    @include breakpoint-up(large)
-      width: 58px
-    
+    width: 1.7em
     transform: translateZ(0)
-
-  &__top
-    height: 40px
-
 
   &__bottom
     position: absolute
     color: $color_light
-    // padding: 24px 0px
-    // line-height: 0px
-    top: 55%
+    top: 50%
     left: 0
     filter: brightness(100%)
     background: $card_bg_light
@@ -120,7 +123,7 @@ $dot_posX: -4px
 
     &::after
       display: block
-      margin-top: - $card_h
+      margin-top: -0.72em
       content: attr(data-value)
 
 

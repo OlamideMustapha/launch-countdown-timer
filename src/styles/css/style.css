@@ -1,13 +1,13 @@
 html, html * {
   padding: 0px;
   margin: 0px;
-  font-family: "Red Hat Text", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
   box-sizing: border-box;
 }
 
 body {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -75,23 +75,51 @@ body .footer {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  font-size: 10vw;
 }
 .flip:not(:last-child) {
   margin: 0px 20px 0px 0px;
 }
+@media (min-width: 640px) {
+  .flip {
+    font-size: 8vw;
+  }
+}
+@media (min-width: 1020px) {
+  .flip {
+    font-size: 6vw;
+  }
+}
+@media (min-width: 1440px) {
+  .flip {
+    font-size: 4.3vw;
+  }
+}
 .flip > div {
   position: relative;
+  display: inline-block;
   overflow: hidden;
-  height: 82.5px;
 }
 .flip__dot {
   position: absolute;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 7px;
+  height: 7px;
   background-color: #1a1a24;
   border-radius: 0.78125em;
   z-index: 5;
-  top: 50%;
+  top: 45%;
+}
+@media (min-width: 1020px) {
+  .flip__dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media (min-width: 1440px) {
+  .flip__dot {
+    width: 12px;
+    height: 12px;
+  }
 }
 .flip__dot.right {
   right: -4px;
@@ -102,56 +130,61 @@ body .footer {
 .flip__card {
   display: block;
   position: relative;
-  padding-bottom: 0.78125em;
+  padding-bottom: 0.72em;
   font-size: 10vw;
   line-height: 0.95;
 }
+@media (min-width: 640px) {
+  .flip__card {
+    font-size: 8vw;
+  }
+}
+@media (min-width: 1020px) {
+  .flip__card {
+    font-size: 6vw;
+  }
+}
+@media (min-width: 1440px) {
+  .flip__card {
+    font-size: 4.3vw;
+  }
+}
 .flip__name {
-  font-size: 8px;
+  font-size: 0.8vw;
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   padding-top: 10px;
   color: #8486a9;
 }
+@media (max-width: 639px) {
+  .flip__name {
+    font-size: 8px;
+  }
+}
+@media (min-width: 1440px) {
+  .flip__name {
+    font-size: 0.6vw;
+  }
+}
 
 .card__top, .card__bottom, .card__back::before, .card__back::after {
   display: block;
-  height: 30px;
-  font-size: 32px;
+  height: 0.72em;
   color: #fb6087;
   filter: brightness(79%);
   background-color: #343650;
-  padding: 0;
-  line-height: 1.6em;
+  padding: 0.25em 0.25em;
   border-radius: 4px 4px 0 0;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  width: 58px;
+  width: 1.7em;
   transform: translateZ(0);
-}
-@media (min-width: 375px) {
-  .card__top, .card__bottom, .card__back::before, .card__back::after {
-    width: 65px;
-  }
-}
-@media (min-width: 640px) {
-  .card__top, .card__bottom, .card__back::before, .card__back::after {
-    width: 58px;
-  }
-}
-@media (min-width: 1020px) {
-  .card__top, .card__bottom, .card__back::before, .card__back::after {
-    width: 58px;
-  }
-}
-.card__top {
-  height: 40px;
 }
 .card__bottom {
   position: absolute;
   color: #fb6087;
-  top: 55%;
+  top: 50%;
   left: 0;
   filter: brightness(100%);
   background: #343650;
@@ -161,7 +194,7 @@ body .footer {
 }
 .card__bottom::after {
   display: block;
-  margin-top: -0.78125em;
+  margin-top: -0.72em;
   content: attr(data-value);
 }
 .card__back {
