@@ -151,7 +151,7 @@ body .footer .attribution:hover {
   background-color: #1a1a24;
   border-radius: 0.78125em;
   z-index: 5;
-  top: 37%;
+  top: 38%;
 }
 @media (min-width: 1020px) {
   .flip__dot {
