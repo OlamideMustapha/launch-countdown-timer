@@ -1,0 +1,43 @@
+$footer_h: 20%
+$main_h: 80%
+  
+html
+  &, & *
+    padding: 0px
+    margin: 0px  
+    font-family: 'Red Hat Text', sans-serif
+    font-size: 14px
+    font-weight: 700
+    box-sizing: border-box
+
+body
+  @include flex-column (space-between, center)
+  background-image:  linear-gradient(180deg, #191A24 17%, #1e1f29 51%,#191a24db 101%, #fb6087 10%)
+  background-color: $softRed
+  height: 100vh
+
+  .main 
+    @include flex-column (space-between, center)
+    background-image: url("../../../images/bg-stars.svg")
+    // background-position: bottom center
+    // background-repeat: no-repeat
+    background-size: 100%
+    width: 100vw
+    height: $main_h
+    padding-top: 130px
+    &__header
+      h1
+        font-size: 20px
+        color: $white
+        text-transform: uppercase
+        letter-spacing: .4em
+        text-align: center
+
+
+  .footer
+    background-image: url("../../../images/pattern-hills.svg")
+    // background-position: bottom center
+    background-repeat: no-repeat
+    background-size: 100%
+    width: 100vw
+    height: $footer_h

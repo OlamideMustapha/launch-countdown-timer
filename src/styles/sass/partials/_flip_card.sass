@@ -1,0 +1,139 @@
+$dot_w: 10px
+$dot_bg: #1a1a24
+$dot_posY : 40%
+$dot_posX: -3px
+
+// font-size
+$flip_small: 2vw
+$flip_large: 9vw
+
+// color
+$color_light: #fa5e84
+$color_dark: #b94561
+
+// card background
+$card_bg_light:#34364f
+$card_bg_dark: #22223a
+
+
+.main__countdown
+  text-align: center
+  perspective: 400px
+  margin: 20px auto
+
+  & *,
+  & *:before,
+  & *:after
+    box-sizing: border-box
+
+.flip
+  position: relative
+  @include flex-column (space-between, center)
+  overflow: hidden
+
+  &__dot
+    position: absolute
+    width: $dot_w
+    height: $dot_w
+    background-color: $dot_bg
+    border-radius: 50px
+    z-index:5
+    top: $dot_posY
+
+    &.right
+      right: $dot_posX
+    &.left
+      left: $dot_posX
+
+  &__card
+    display: block
+    position: relative
+    padding-bottom: 0.72em
+    font-size: $flip_large
+    line-height: 0.95
+
+
+  &__name
+    font-size: $flip_small
+
+.card
+  &__top,
+  &__bottom, 
+  &__back::before,
+  &__back::after
+    display: block
+    height: 0.72em
+    color: $color_dark
+    background-color: $card_bg_dark
+    padding: 0.25em 0.25em
+    border-radius: 8px 8px 0 0
+    backface-visibility: hidden
+    transform-style: preserve-3d
+    width: 1.7em
+    transform: translateZ(0)
+
+  &__top
+
+  &__bottom
+    position: absolute
+    color: $color_light
+    top: 50%
+    left: 0
+    background: $card_bg_light
+    border-radius: 0 0 8px 8px
+    box-shadow: 0px 9px 2px 0px #1a1a24
+    pointer-events: none
+    overflow: hidden
+
+    &::after
+      display: block
+      margin-top: -0.72em
+      content: attr(data-value)
+
+
+  &__back
+    position: absolute
+    top: 0
+    height: 100%
+    left: 0%
+    pointer-events: none
+    &::before
+      content: attr(data-value)
+      position: relative
+      z-index: -1
+      overflow: hidden
+
+
+.flip-animate .card__back::before
+  animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35)
+  animation-fill-mode: both
+  transform-origin: center bottom
+
+.flip-animate .card__back .card__bottom
+  transform-origin: center top
+  animation-fill-mode: both
+  animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1)
+
+@keyframes flipTop
+  0%
+    transform: rotateX(0deg)
+    z-index: 2
+  0%,
+  99%
+    opacity: 0.99
+  100%
+    transform: rotateX(-90deg)
+    opacity: 0
+
+@keyframes flipBottom
+  0%,
+  50%
+    z-index: -1
+    transform: rotateX(90deg)
+    opacity: 0
+  51%
+    opacity: 0.99
+  100%
+    opacity: 0.99
+    transform: rotateX(0deg)
+    z-index: 5

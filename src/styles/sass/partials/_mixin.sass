@@ -1,0 +1,25 @@
+
+// 375px 640px 1020px 1440px
+$breakpoints-up: ("small": "375px", "medium": "640px", "large": "1020px", "xlarge": "1440px")
+$breakpoints-down: ("xsmall": "375px", "small": "640px", "medium": "1020px", "large": "1440px")
+
+
+@mixin breakpoint-up ($size)
+  @media (min-width: map-get($breakpoints-up, $size))
+    @contain
+
+@mixin breakpoint-down ($size)
+  @media (max-width: map-get($breakpoints-down, $size))
+    @contain
+
+@mixin flex-row ($js, $ai)
+  display: flex
+  flex-direction: row
+  justify-content: $js
+  align-items: $ai
+
+@mixin flex-column ($js, $ai)
+  display: flex
+  flex-direction: column
+  justify-content: $js
+  align-items: $ai
