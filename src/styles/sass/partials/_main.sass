@@ -1,5 +1,5 @@
-$footer_h: 20%
-$main_h: 80%
+$footer_h: 30%
+$main_h: 70%
   
 html
   &, & *
@@ -12,8 +12,7 @@ body
   font-size: 14px
   font-weight: 700
   @include flex-column (space-between, center)
-  background-image:  linear-gradient(180deg, #191A24 17%, #1e1f29 51%,#191a24db 101%, #fb6087 10%)
-  background-color: $softRed
+  background-image: linear-gradient(180deg, #191A24 17%, #1e1f29 51%, #2b212d 83%)
   height: 100vh
 
   .main 
@@ -28,6 +27,8 @@ body
 
     &__header
       padding-top: 0px
+      @include breakpoint-down (small)
+        max-width: 350px
       h1
         font-size: 18px
         @include breakpoint-up(medium)
@@ -39,12 +40,39 @@ body
 
 
   .footer
+    @include flex-column (flex-end, center)
     background-image: url("../../../images/pattern-hills.svg")
     // background-position: bottom center
+
+    @include breakpoint-down(small)
+      background-repeat: no-repeat
+      background-size: cover
+      background-position: -796px 0px
+
     background-repeat: no-repeat
+    background-position: center bottom
     background-size: 100%
     width: 100vw
     height: $footer_h
+
+    &__social-icons
+      @include flex-row (space-between, center)
+      margin: 30px
+      width: 130px
+      svg path
+        transition: all 1s ease-in-out
+      svg:hover path
+        fill: $softRed
+    .attribution
+      opacity: 0.3
+      color: $softRed
+      font-weight: 100
+      transition: all 1s ease-in-out
+      a
+        color: inherit
+      &:hover
+        opacity: 1
+
 
 
 .container
